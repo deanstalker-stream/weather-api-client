@@ -36,7 +36,10 @@ func TestGetCurrentForecast_Success(t *testing.T) {
 			},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 	}))
 	defer server.Close()
 
@@ -58,7 +61,7 @@ func TestGetCurrentForecast_Success(t *testing.T) {
 func TestGetCurrentForecast_InvalidJSON(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte("invalid json"))
+		_, _ = w.Write([]byte("invalid json"))
 	}))
 	defer server.Close()
 
@@ -96,7 +99,10 @@ func TestGetCurrentForecast_ZeroCoordinates(t *testing.T) {
 		assert.Equal(t, "0.00000000,0.00000000", r.URL.Query().Get("q"))
 		response := Payload{}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 	}))
 	defer server.Close()
 
@@ -118,7 +124,10 @@ func TestGetCurrentForecast_NegativeCoordinates(t *testing.T) {
 		assert.Equal(t, "-33.86880000,-151.20550000", r.URL.Query().Get("q"))
 		response := Payload{}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 	}))
 	defer server.Close()
 
@@ -238,7 +247,10 @@ func TestGetCurrentForecast_ResponseBodyClose(t *testing.T) {
 			},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 	}))
 	defer server.Close()
 
@@ -259,7 +271,10 @@ func TestGetCurrentForecast_LargeCoordinates(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		response := Payload{}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(response)
+		err := json.NewEncoder(w).Encode(response)
+		if err != nil {
+			return
+		}
 	}))
 	defer server.Close()
 

@@ -1,6 +1,6 @@
 module github.com/deanstalker-stream/weather-api-client
 
-go 1.25.5
+go 1.26.2
 
 require (
 	github.com/spf13/viper v1.21.0
