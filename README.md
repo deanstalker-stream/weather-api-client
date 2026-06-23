@@ -1,5 +1,7 @@
 # weather-api-client
 
+[![Lint](https://github.com/deanstalker-stream/weather-api-client/actions/workflows/lint.yml/badge.svg)](https://github.com/deanstalker-stream/weather-api-client/actions/workflows/lint.yml) [![Test](https://github.com/deanstalker-stream/weather-api-client/actions/workflows/test.yml/badge.svg)](https://github.com/deanstalker-stream/weather-api-client/actions/workflows/test.yml)
+
 Provides a client for the Weather API.
 
 https://www.weatherapi.com/
